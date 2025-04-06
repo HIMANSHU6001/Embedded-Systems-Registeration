@@ -9,12 +9,36 @@ import StepIndicator from "@/components/StepIndicator"; // Assuming you have a p
 
 const TOTAL_STEPS = 5;
 
+export type FormValues = {
+  fullName: string;
+  email: string;
+  countryCode: string;
+  phoneNumber: string;
+  affiliation: string;
+  selectedAlgorithms: string[];
+  solutionCategory:
+    | "withOsWithoutHardware"
+    | "withHardwareWithoutOs"
+    | "withBothOsAndHardware"
+    | "customizable";
+  userCategory: "professor" | "industrialist" | "enthusiast" | "other";
+  osPreference?: "executable" | "autoBooted";
+};
+
 const RegistrationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [showOsPreferences, setShowOsPreferences] = useState(false);
-  const form = useForm({
+  const form = useForm<FormValues>({
     defaultValues: {
+      fullName: "",
+      email: "",
+      countryCode: "",
+      phoneNumber: "",
+      affiliation: "",
+      selectedAlgorithms: [],
       solutionCategory: "withOsWithoutHardware",
+      userCategory: "enthusiast",
+      osPreference: undefined,
     },
   });
 
