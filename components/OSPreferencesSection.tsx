@@ -14,7 +14,7 @@ interface OSPreferencesSectionProps {
     userCategory: "professor" | "industrialist" | "enthusiast" | "other";
     solutionCategory:
       | "withOsWithoutHardware"
-      | "withoutHardwareWithOs"
+      | "withHardwareWithoutOs"
       | "withBothOsAndHardware"
       | "customizable";
     osPreference?: "executable" | "autoBooted";

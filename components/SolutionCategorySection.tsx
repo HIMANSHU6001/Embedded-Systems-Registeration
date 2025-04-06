@@ -86,7 +86,7 @@ const SolutionCategorySection: React.FC<SolutionCategorySectionProps> = ({
               <div className="relative w-full h-40 sm:h-48 rounded-md overflow-hidden border border-gray-200 bg-gray-100">
                 <Image
                   src="/assets/fig3.png"
-                  alt="OS only"
+                  alt="Hardware only"
                   width={200}
                   height={200}
                   className="object-contain"

@@ -12,7 +12,7 @@ interface AlgorithmPreferencesSectionProps {
     countryCode: string;
     affiliation: string;
     userCategory: "professor" | "industrialist" | "enthusiast" | "other";
-    solutionCategory: "withOsWithoutHardware" | "withoutHardwareWithOs" | "withBothOsAndHardware" | "customizable";
+    solutionCategory: "withOsWithoutHardware" | "withHardwareWithoutOs" | "withBothOsAndHardware" | "customizable";
     osPreference?: "executable" | "autoBooted";
   }>;
 }

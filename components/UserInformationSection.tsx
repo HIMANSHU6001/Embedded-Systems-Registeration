@@ -11,7 +11,7 @@ type RegistrationFormData = {
   selectedAlgorithms: string[];
   solutionCategory:
     | "withOsWithoutHardware"
-    | "withoutHardwareWithOs"
+    | "withHardwareWithoutOs"
     | "withBothOsAndHardware"
     | "customizable";
   userCategory: "professor" | "industrialist" | "enthusiast" | "other";
