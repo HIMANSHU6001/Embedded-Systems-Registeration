@@ -73,7 +73,7 @@ const SolutionCategorySection: React.FC<SolutionCategorySectionProps> = ({
               htmlFor="withHardwareWithoutOs"
               className="font-medium text-base sm:text-lg text-gray-900"
             >
-              With Hardware, Without OS
+              With hardware, With OS running your customizable algorithm 
             </label>
             <p className="text-sm text-gray-600">
               We will provide the hardware setup, including a touchscreen,
