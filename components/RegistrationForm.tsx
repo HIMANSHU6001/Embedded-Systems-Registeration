@@ -63,7 +63,7 @@ const RegistrationForm = () => {
   React.useEffect(() => {
     const hasOs = [
       "withOsWithoutHardware",
-      "withoutHardwareWithOs",
+      "withHardwareWithoutOs",
       "withBothOsAndHardware",
     ].includes(solutionCategory);
     setShowOsPreferences(hasOs);

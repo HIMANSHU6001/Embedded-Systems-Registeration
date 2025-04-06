@@ -13,7 +13,7 @@ const SolutionCategorySection: React.FC<SolutionCategorySectionProps> = ({
 }) => {
   return (
     <div className="space-y-4 w-full max-w-3xl mx-auto">
-      {/* Option 1 */}
+      {/* Option 1: With OS, Without Hardware */}
       <div className="flex flex-col sm:flex-row items-start gap-4 p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">
         <div className="flex items-start mt-0.5">
           <input
@@ -56,13 +56,13 @@ const SolutionCategorySection: React.FC<SolutionCategorySectionProps> = ({
         </div>
       </div>
 
-      {/* Option 2 */}
+      {/* Option 2: With Hardware, Without OS */}
       <div className="flex flex-col sm:flex-row items-start gap-4 p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">
         <div className="flex items-start mt-0.5">
           <input
             type="radio"
-            id="withoutHardwareWithOs"
-            value="withoutHardwareWithOs"
+            id="withHardwareWithoutOs"
+            value="withHardwareWithoutOs"
             {...form.register("solutionCategory")}
             className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
           />
@@ -70,17 +70,17 @@ const SolutionCategorySection: React.FC<SolutionCategorySectionProps> = ({
         <div className="flex-1 min-w-0">
           <div className="flex flex-col gap-2">
             <label
-              htmlFor="withoutHardwareWithOs"
+              htmlFor="withHardwareWithoutOs"
               className="font-medium text-base sm:text-lg text-gray-900"
             >
-              Without Hardware, With OS
+              With Hardware, Without OS
             </label>
             <p className="text-sm text-gray-600">
-              This is just the OS (operating system), and we will also share
-              specific instructions on what hardware to buy and how to set it
-              up. After setting it up, it will be something that will have a
-              touchscreen, camera, and microphone integrated into it. With that,
-              you or your students can detect images and sounds.
+              We will provide the hardware setup, including a touchscreen,
+              camera, and microphone. You can install your own operating system
+              and software to customize the system as per your requirements.
+              This option is ideal for those who want to experiment with their
+              own OS and algorithms while using our recommended hardware setup.
             </p>
             <div className="mt-3">
               <div className="relative w-full h-40 sm:h-48 rounded-md overflow-hidden border border-gray-200 bg-gray-100">
@@ -98,7 +98,7 @@ const SolutionCategorySection: React.FC<SolutionCategorySectionProps> = ({
         </div>
       </div>
 
-      {/* Option 3 */}
+      {/* Option 3: With Both OS and Hardware */}
       <div className="flex flex-col sm:flex-row items-start gap-4 p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">
         <div className="flex items-start mt-0.5">
           <input
@@ -140,7 +140,7 @@ const SolutionCategorySection: React.FC<SolutionCategorySectionProps> = ({
         </div>
       </div>
 
-      {/* Option 4 */}
+      {/* Option 4: Customizable Solution */}
       <div className="flex flex-col sm:flex-row items-start gap-4 p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-colors shadow-sm">
         <div className="flex items-start mt-0.5">
           <input
