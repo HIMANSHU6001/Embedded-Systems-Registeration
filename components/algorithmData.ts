@@ -5,91 +5,91 @@ export const imageProcessingAlgorithms = [
     label: "Object Detection",
     description:
       "We have developed a light weighted object detection model, which can detect multiple objects accurately and can work with a decent FPS providing real time results. Use -> To detect weapons in public areas.",
-    image: "assets/fig6.png",
+    image: "/assets/fig6.png",
   },
   {
     id: "face-detection",
     label: "Face Detection",
     description:
       "We have developed a light weighted face detection model. If you provide faces we can build a model which will perform desirable actions. Use -> Attendance in classroom.",
-    image: "assets/fig7.png",
+    image: "/assets/fig7.png",
   },
   {
     id: "gesture-detection",
     label: "Hand/Body Gesture Detection",
     description:
       "We have developed a light weighted hand/body gesture detection model, which can detect a specific gesture and provide real time result. Uses -> Hand sign language to message conversion.",
-    image: "assets/fig8.png",
+    image: "/assets/fig8.png",
   },
   {
     id: "image-segmentation",
     label: "Image Segmentation",
     description:
       "We have developed a light weighted image segmentation model which can detect an object and will track it, removing its background. Uses -> If you want to trace any particular object.",
-    image: "assets/fig9.png",
+    image: "/assets/fig9.png",
   },
   {
     id: "military-perimeter",
     label: "Military Perimeter",
     description:
       "We have developed a light weighted model which will detect if someone is crossing the perimeter and will update the area of inchange. Uses -> Military Perimeter",
-    image: "assets/fig15.png",
+    image: "/assets/fig15.png",
   },
   {
     id: "character-recognition",
     label: "Character Recognition",
     description:
       "We have developed a light weighted model which can detect character chain control.",
-    image: "assets/fig16.png",
+    image: "/assets/fig16.png",
   },
   {
     id: "2d-to-3d",
     label: "2D Image To 3D Model Conversion",
     description:
       "We have developed a light weighted model which can convert a 2D image into a 3D image. Provided our device is used and the 3D image will blend or form.",
-    image: "assets/fig17.png",
+    image: "/assets/fig17.png",
   },
   {
     id: "car-accident",
     label: "Car Accident Detector",
     description:
       "We have developed a light weighted model which can detect car accident and will update the nearby hospital immediately. Uses -> Highway",
-    image: "assets/fig18.jpg",
+    image: "/assets/fig18.jpg",
   },
   {
     id: "top-view",
     label: "Top View Object Detection",
     description:
       "We develop a highly sophisticated model, which can identify objects from a top view in real-time. Uses: Can be used to detect objects even with satellite images.",
-    image: "assets/fig10.jpg",
+    image: "/assets/fig10.jpg",
   },
   {
     id: "skin-cancer",
     label: "Skin Cancer/Brain Tumor Detection",
     description:
       "A model to detect skin cancer offline and real-time. Uses: Medical Field",
-    image: "assets/fig11.webp",
+    image: "/assets/fig11.webp",
   },
   {
     id: "medical-report",
     label: "Medical Report",
     description:
       "We have developed a highly-weighted model, which can help us to detect any bone structure, microscopic images for Cancer cells, and report CT scans and so on. Uses: Medical Field",
-    image: "assets/fig12.png",
+    image: "/assets/fig12.png",
   },
   {
     id: "road-maintenance",
     label: "Roads/Bridges Maintenance",
     description:
       "We have developed a lightweight model which can detect cracks/holes in roads and bridges in real-time. Uses: For maintenance",
-    image: "assets/fig13.jpg",
+    image: "/assets/fig13.jpg",
   },
   {
     id: "crowd-detector",
     label: "Smart Cities/Crowd Detector",
     description:
       "We have developed a lightweight model, which can detect crowds and traffic. Alerting nearby person in charge. Uses: Public places",
-    image: "assets/fig14.png",
+    image: "/assets/fig14.png",
   },
 ];
 

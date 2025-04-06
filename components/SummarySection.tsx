@@ -57,36 +57,45 @@ const SummarySection: React.FC<SummarySectionProps> = ({
   );
 
   return (
-    <div className="space-y-6">
-      <p className="text-center text-gray-500 mb-6">
+    <div className="space-y-6 px-4 sm:px-0 max-w-3xl mx-auto">
+      <p className="text-center text-gray-500 mb-6 text-sm sm:text-base">
         Please review your registration details below before submitting.
       </p>
 
+      {/* Personal Information Card */}
       <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-        <div className="p-6">
-          <h3 className="text-lg font-semibold mb-4">Personal Information</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <p className="text-sm text-gray-500">Full Name</p>
-              <p className="font-medium">{formValues.fullName}</p>
+        <div className="p-4 sm:p-6">
+          <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
+            Personal Information
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <p className="text-xs sm:text-sm text-gray-500">Full Name</p>
+              <p className="font-medium text-sm sm:text-base break-words">
+                {formValues.fullName}
+              </p>
             </div>
-            <div>
-              <p className="text-sm text-gray-500">Email</p>
-              <p className="font-medium">{formValues.email}</p>
+            <div className="space-y-1">
+              <p className="text-xs sm:text-sm text-gray-500">Email</p>
+              <p className="font-medium text-sm sm:text-base break-words">
+                {formValues.email}
+              </p>
             </div>
-            <div>
-              <p className="text-sm text-gray-500">Phone Number</p>
-              <p className="font-medium">
+            <div className="space-y-1">
+              <p className="text-xs sm:text-sm text-gray-500">Phone Number</p>
+              <p className="font-medium text-sm sm:text-base">
                 {formValues.countryCode} {formValues.phoneNumber}
               </p>
             </div>
-            <div>
-              <p className="text-sm text-gray-500">Affiliation</p>
-              <p className="font-medium">{formValues.affiliation}</p>
+            <div className="space-y-1">
+              <p className="text-xs sm:text-sm text-gray-500">Affiliation</p>
+              <p className="font-medium text-sm sm:text-base break-words">
+                {formValues.affiliation}
+              </p>
             </div>
-            <div>
-              <p className="text-sm text-gray-500">User Category</p>
-              <p className="font-medium">
+            <div className="space-y-1">
+              <p className="text-xs sm:text-sm text-gray-500">User Category</p>
+              <p className="font-medium text-sm sm:text-base">
                 {userCategoryLabels[formValues.userCategory] ||
                   formValues.userCategory}
               </p>
@@ -95,22 +104,29 @@ const SummarySection: React.FC<SummarySectionProps> = ({
         </div>
       </div>
 
+      {/* Solution Preferences Card */}
       <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-        <div className="p-6">
-          <h3 className="text-lg font-semibold mb-4">Solution Preferences</h3>
-          <div className="space-y-4">
-            <div>
-              <p className="text-sm text-gray-500">Solution Category</p>
-              <p className="font-medium">
+        <div className="p-4 sm:p-6">
+          <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
+            Solution Preferences
+          </h3>
+          <div className="space-y-3 sm:space-y-4">
+            <div className="space-y-1">
+              <p className="text-xs sm:text-sm text-gray-500">
+                Solution Category
+              </p>
+              <p className="font-medium text-sm sm:text-base break-words">
                 {solutionCategoryLabels[formValues.solutionCategory] ||
                   formValues.solutionCategory}
               </p>
             </div>
 
             {showOsPreferences && (
-              <div>
-                <p className="text-sm text-gray-500">OS Preference</p>
-                <p className="font-medium">
+              <div className="space-y-1">
+                <p className="text-xs sm:text-sm text-gray-500">
+                  OS Preference
+                </p>
+                <p className="font-medium text-sm sm:text-base">
                   {osPreferenceLabels[formValues.osPreference || ""] ||
                     "Not specified"}
                 </p>
@@ -120,51 +136,64 @@ const SummarySection: React.FC<SummarySectionProps> = ({
         </div>
       </div>
 
+      {/* Selected Algorithms Card */}
       <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
-        <div className="p-6">
-          <h3 className="text-lg font-semibold mb-4">Selected Algorithms</h3>
+        <div className="p-4 sm:p-6">
+          <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">
+            Selected Algorithms
+          </h3>
           {algorithmLabels.length > 0 ? (
             <ul className="list-disc pl-5 space-y-1">
               {algorithmLabels.map((label, index) => (
-                <li key={index} className="font-medium">
+                <li
+                  key={index}
+                  className="font-medium text-sm sm:text-base break-words"
+                >
                   {label}
                 </li>
               ))}
             </ul>
           ) : (
-            <p className="text-gray-500">No algorithms selected</p>
+            <p className="text-gray-500 text-sm sm:text-base">
+              No algorithms selected
+            </p>
           )}
         </div>
       </div>
 
-      <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-        <h3 className="text-lg font-semibold mb-2 text-green-700">
+      {/* Thank You Card */}
+      <div className="bg-green-50 p-4 sm:p-6 rounded-lg border border-green-200">
+        <h3 className="text-base sm:text-lg font-semibold mb-2 text-green-700">
           Thank You For Registering!
         </h3>
-        <p className="text-green-600 mb-4">
+        <p className="text-green-600 text-sm sm:text-base mb-4">
           If you want to be a part of our community, if you want any of our
           device or want to customize it as per your need - then do contact us.
         </p>
       </div>
 
-      <div className="mt-8 bg-blue-50 p-6 rounded-lg border border-blue-200">
-        <h3 className="text-lg font-semibold mb-2 text-blue-700">
+      {/* Custom Project Card */}
+      <div className="mt-6 bg-blue-50 p-4 sm:p-6 rounded-lg border border-blue-200">
+        <h3 className="text-base sm:text-lg font-semibold mb-2 text-blue-700">
           Have a custom project idea?
         </h3>
-        <p className="text-blue-600 mb-4">
+        <p className="text-blue-600 text-sm sm:text-base mb-4">
           If you have any problem statement or any creative idea that can bring
           one or more algorithms together to solve a real-world or social
           problem, reach us on WhatsApp.
         </p>
-        <p className="text-blue-600 mb-2">
+        <p className="text-blue-600 text-sm sm:text-base mb-2">
           We would love to discuss and if needed, we will also share some
           reference or research work.
         </p>
-        <p className="font-bold text-blue-700">Contact us: +91 90401 31134</p>
+        <p className="font-bold text-blue-700 text-sm sm:text-base">
+          Contact us: +91 90401 71174
+        </p>
       </div>
 
-      <div className="mt-4 text-center text-sm text-gray-500">
-        © Kalpruti Medtech pvt ltd. All rights reserved.
+      {/* Footer */}
+      <div className="mt-6 text-center text-xs sm:text-sm text-gray-500 pb-4">
+        © Kalpruh Medtech pvt ltd. All rights reserved.
       </div>
     </div>
   );

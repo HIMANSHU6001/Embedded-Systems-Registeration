@@ -21,11 +21,12 @@ type RegistrationFormData = {
 interface UserInformationSectionProps {
   form: UseFormReturn<RegistrationFormData>;
 }
+
 const UserInformationSection: React.FC<UserInformationSectionProps> = ({
   form,
 }) => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full max-w-3xl mx-auto px-4 sm:px-6 md:px-0">
       {/* Full Name */}
       <div className="space-y-2">
         <label htmlFor="fullName" className="block text-sm font-medium">
@@ -36,7 +37,7 @@ const UserInformationSection: React.FC<UserInformationSectionProps> = ({
           type="text"
           placeholder="Enter your full name"
           {...form.register("fullName")}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-sm"
         />
         {form.formState.errors.fullName && (
           <p className="text-sm text-red-500 mt-1">
@@ -55,7 +56,7 @@ const UserInformationSection: React.FC<UserInformationSectionProps> = ({
           type="email"
           placeholder="Enter your email address"
           {...form.register("email")}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-sm"
         />
         {form.formState.errors.email && (
           <p className="text-sm text-red-500 mt-1">
@@ -69,19 +70,19 @@ const UserInformationSection: React.FC<UserInformationSectionProps> = ({
         <label htmlFor="phoneNumber" className="block text-sm font-medium">
           Phone Number <span className="text-red-500">*</span>
         </label>
-        <div className="flex gap-2">
-          <div className="relative">
+        <div className="flex flex-col sm:flex-row gap-2">
+          <div className="relative w-full sm:w-1/4">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 font-medium">
               +
             </span>
             <input
               id="countryCode"
               type="tel"
-              className="pl-6 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full pl-6 pr-8 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-sm"
               placeholder="Country code"
               {...form.register("countryCode")}
             />
-            <div className="absolute right-1 top-1/2 -translate-y-1/2 group">
+            <div className="absolute right-2 top-1/2 -translate-y-1/2 group">
               <Info size={14} className="text-gray-400 cursor-help" />
               <div className="absolute right-0 bottom-full mb-2 w-48 p-2 bg-gray-800 text-white text-xs rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
                 <p>Enter country code without +</p>
@@ -93,7 +94,7 @@ const UserInformationSection: React.FC<UserInformationSectionProps> = ({
             type="tel"
             placeholder="Phone number"
             {...form.register("phoneNumber")}
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-sm"
           />
         </div>
         {(form.formState.errors.phoneNumber ||
@@ -115,7 +116,7 @@ const UserInformationSection: React.FC<UserInformationSectionProps> = ({
           type="text"
           placeholder="University, company, or independent"
           {...form.register("affiliation")}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-sm"
         />
         {form.formState.errors.affiliation && (
           <p className="text-sm text-red-500 mt-1">
@@ -132,7 +133,7 @@ const UserInformationSection: React.FC<UserInformationSectionProps> = ({
         <select
           id="userCategory"
           {...form.register("userCategory")}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-base sm:text-sm appearance-none bg-white"
         >
           <option value="professor">Professor</option>
           <option value="industrialist">Industrialist</option>
