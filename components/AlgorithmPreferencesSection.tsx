@@ -29,25 +29,26 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
   };
 
   return (
-    <div className="space-y-4 w-full">
-      <div className="mb-4">
-        <label className="block text-sm sm:text-base font-medium text-gray-900 mb-1">
+    <div className="space-y-6 w-full">
+      {/* Header Section */}
+      <div className="mb-6">
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">
           Select Your Preferred Algorithms <span className="text-red-500">*</span>
-        </label>
-        <p className="text-xs sm:text-sm text-gray-600">
+        </h3>
+        <p className="text-sm text-gray-600">
           Choose at least one algorithm. You can select multiple options.
         </p>
       </div>
 
-      {/* Tabs */}
-      <div className="w-full mb-4">
+      {/* Tabs - Enhanced for better mobile visibility */}
+      <div className="w-full mb-6">
         <div className="grid grid-cols-2 border border-gray-200 rounded-lg overflow-hidden shadow-sm">
           <button
             onClick={(e) => {
               e.preventDefault();
               setActiveTab("image");
             }}
-            className={`py-2 px-1 text-center text-xs sm:text-sm font-medium transition-colors ${
+            className={`py-3 px-2 sm:py-3 sm:px-4 text-center text-sm sm:text-base font-medium transition-colors ${
               activeTab === "image"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-50 text-gray-700 hover:bg-gray-100"
@@ -60,7 +61,7 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
               e.preventDefault();
               setActiveTab("sound");
             }}
-            className={`py-2 px-1 text-center text-xs sm:text-sm font-medium transition-colors ${
+            className={`py-3 px-2 sm:py-3 sm:px-4 text-center text-sm sm:text-base font-medium transition-colors ${
               activeTab === "sound"
                 ? "bg-blue-600 text-white"
                 : "bg-gray-50 text-gray-700 hover:bg-gray-100"
@@ -71,13 +72,17 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
         </div>
       </div>
 
-      {/* Image Processing Tab Content */}
+      {/* Tab Content */}
       <div className={activeTab === "image" ? "block" : "hidden"}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {imageProcessingAlgorithms.map((algorithm) => (
             <div
               key={algorithm.id}
-              className="border border-gray-200 rounded-lg p-3 hover:border-gray-300 hover:shadow-sm transition-all"
+              className={`border rounded-xl p-4 transition-all ${
+                form.watch("selectedAlgorithms")?.includes(algorithm.id)
+                  ? "border-blue-300 bg-blue-50/20"
+                  : "border-gray-200 hover:border-gray-300 bg-white"
+              } shadow-sm hover:shadow-md`}
             >
               <div className="flex flex-col h-full">
                 <div className="flex items-start gap-3">
@@ -85,7 +90,11 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
                     <input
                       type="checkbox"
                       id={algorithm.id}
-                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      className={`w-5 h-5 rounded focus:ring-blue-500 ${
+                        form.watch("selectedAlgorithms")?.includes(algorithm.id)
+                          ? "text-blue-600 border-blue-300"
+                          : "text-gray-600 border-gray-300"
+                      }`}
                       checked={form.watch("selectedAlgorithms")?.includes(algorithm.id) || false}
                       onChange={(e) => {
                         const currentValues = form.watch("selectedAlgorithms") || [];
@@ -102,17 +111,17 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center justify-between gap-3">
                       <label
                         htmlFor={algorithm.id}
-                        className="font-medium text-sm sm:text-base text-gray-900 cursor-pointer line-clamp-2"
+                        className="font-medium text-base text-gray-900 cursor-pointer line-clamp-2"
                       >
                         {algorithm.label}
                       </label>
                       <button
                         type="button"
                         onClick={() => toggleDetails(algorithm.id)}
-                        className="shrink-0 px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
+                        className="shrink-0 px-3 py-1 text-xs sm:text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
                       >
                         {expandedDetails[algorithm.id] ? "Hide" : "Details"}
                       </button>
@@ -120,8 +129,8 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
                   </div>
                 </div>
 
-                <div className="mt-3">
-                  <div className="relative w-full h-36 sm:h-40 rounded-md overflow-hidden border border-gray-200 bg-gray-50">
+                <div className="mt-4">
+                  <div className="relative w-full h-40 sm:h-48 rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
                     <Image
                       src={algorithm.image}
                       alt={algorithm.label}
@@ -133,7 +142,7 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
                 </div>
 
                 {expandedDetails[algorithm.id] && (
-                  <div className="mt-3 text-xs sm:text-sm text-gray-600">
+                  <div className="mt-4 text-sm text-gray-600 bg-gray-50/50 p-3 rounded-lg">
                     {algorithm.description}
                   </div>
                 )}
@@ -143,13 +152,16 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
         </div>
       </div>
 
-      {/* Sound Processing Tab Content */}
       <div className={activeTab === "sound" ? "block" : "hidden"}>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2gap-4 sm:gap-6">
           {soundProcessingAlgorithms.map((algorithm) => (
             <div
               key={algorithm.id}
-              className="border border-gray-200 rounded-lg p-3 hover:border-gray-300 hover:shadow-sm transition-all"
+              className={`border rounded-xl p-4 transition-all ${
+                form.watch("selectedAlgorithms")?.includes(algorithm.id)
+                  ? "border-blue-300 bg-blue-50/20"
+                  : "border-gray-200 hover:border-gray-300 bg-white"
+              } shadow-sm hover:shadow-md`}
             >
               <div className="flex flex-col h-full">
                 <div className="flex items-start gap-3">
@@ -157,7 +169,11 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
                     <input
                       type="checkbox"
                       id={algorithm.id}
-                      className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      className={`w-5 h-5 rounded focus:ring-blue-500 ${
+                        form.watch("selectedAlgorithms")?.includes(algorithm.id)
+                          ? "text-blue-600 border-blue-300"
+                          : "text-gray-600 border-gray-300"
+                      }`}
                       checked={form.watch("selectedAlgorithms")?.includes(algorithm.id) || false}
                       onChange={(e) => {
                         const currentValues = form.watch("selectedAlgorithms") || [];
@@ -174,17 +190,17 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center justify-between gap-3">
                       <label
                         htmlFor={algorithm.id}
-                        className="font-medium text-sm sm:text-base text-gray-900 cursor-pointer line-clamp-2"
+                        className="font-medium text-base text-gray-900 cursor-pointer line-clamp-2"
                       >
                         {algorithm.label}
                       </label>
                       <button
                         type="button"
                         onClick={() => toggleDetails(algorithm.id)}
-                        className="shrink-0 px-2 py-1 text-xs bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
+                        className="shrink-0 px-3 py-1 text-xs sm:text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
                       >
                         {expandedDetails[algorithm.id] ? "Hide" : "Details"}
                       </button>
@@ -192,8 +208,8 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
                   </div>
                 </div>
 
-                <div className="mt-3">
-                  <div className="relative w-full h-36 sm:h-40 rounded-md overflow-hidden border border-gray-200 bg-gray-50">
+                <div className="mt-4">
+                  <div className="relative w-full h-40 sm:h-48 rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
                     <Image
                       src={algorithm.image}
                       alt={algorithm.label}
@@ -205,7 +221,7 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
                 </div>
 
                 {expandedDetails[algorithm.id] && (
-                  <div className="mt-3 text-xs sm:text-sm text-gray-600">
+                  <div className="mt-4 text-sm text-gray-600 bg-gray-50/50 p-3 rounded-lg">
                     {algorithm.description}
                   </div>
                 )}
@@ -216,9 +232,9 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
       </div>
 
       {form.formState.errors.selectedAlgorithms && (
-        <p className="text-xs sm:text-sm text-red-600 mt-2">
+        <div className="mt-4 p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm">
           {form.formState.errors.selectedAlgorithms.message as string}
-        </p>
+        </div>
       )}
     </div>
   );
