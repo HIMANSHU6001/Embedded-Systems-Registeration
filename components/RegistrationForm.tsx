@@ -28,6 +28,12 @@ export type FormValues = {
 const RegistrationForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [showOsPreferences, setShowOsPreferences] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<{
+    success?: boolean;
+    message?: string;
+  }>({});
+  
   const form = useForm<FormValues>({
     defaultValues: {
       fullName: "",
@@ -104,6 +110,46 @@ const RegistrationForm = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    setSubmissionStatus({});
+    
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Something went wrong');
+      }
+      
+      setSubmissionStatus({
+        success: true,
+        message: result.message || 'Registration submitted successfully!',
+      });
+      
+      // Optionally reset form or redirect
+      // form.reset();
+      // Or redirect using Next.js router
+      // router.push('/thank-you');
+      
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmissionStatus({
+        success: false,
+        message: error instanceof Error ? error.message : 'Failed to submit registration',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -117,7 +163,20 @@ const RegistrationForm = () => {
           </div>
 
           <div className="p-6 sm:p-8">
-            <form onSubmit={form.handleSubmit(() => {})} noValidate>
+            {/* Submission status message */}
+            {submissionStatus.message && (
+              <div 
+                className={`mb-6 p-4 rounded-lg ${
+                  submissionStatus.success 
+                    ? 'bg-green-100 text-green-800 border border-green-400' 
+                    : 'bg-red-100 text-red-800 border border-red-400'
+                }`}
+              >
+                {submissionStatus.message}
+              </div>
+            )}
+            
+            <form onSubmit={form.handleSubmit(onSubmit)} noValidate>
               {currentStep === 1 && <UserInformationSection form={form} />}
               {currentStep === 2 && <SolutionCategorySection form={form} />}
               {currentStep === 3 && showOsPreferences && (
@@ -136,22 +195,33 @@ const RegistrationForm = () => {
                 <button
                   type="button"
                   onClick={handlePrevious}
-                  disabled={currentStep === 1}
+                  disabled={currentStep === 1 || isSubmitting}
                   className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                    currentStep === 1
+                    currentStep === 1 || isSubmitting
                       ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
                   Previous
                 </button>
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm"
-                >
-                  {currentStep < TOTAL_STEPS ? "Next" : "Submit"}
-                </button>
+                
+                {currentStep < TOTAL_STEPS ? (
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm"
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm disabled:bg-blue-400"
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit"}
+                  </button>
+                )}
               </div>
             </form>
           </div>
