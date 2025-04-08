@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 import Image from "next/image";
-import { imageProcessingAlgorithms, soundProcessingAlgorithms } from "./algorithmData";
+import {
+  imageProcessingAlgorithms,
+  soundProcessingAlgorithms,
+} from "./algorithmData";
 
 interface AlgorithmPreferencesSectionProps {
   form: UseFormReturn<{
@@ -12,13 +15,21 @@ interface AlgorithmPreferencesSectionProps {
     countryCode: string;
     affiliation: string;
     userCategory: "professor" | "industrialist" | "enthusiast" | "other";
-    solutionCategory: "withOsWithoutHardware" | "withHardwareWithoutOs" | "withBothOsAndHardware" | "customizable";
+    solutionCategory:
+      | "withOsWithoutHardware"
+      | "withHardwareWithoutOs"
+      | "withBothOsAndHardware"
+      | "customizable";
     osPreference?: "executable" | "autoBooted";
   }>;
 }
 
-const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = ({ form }) => {
-  const [expandedDetails, setExpandedDetails] = useState<Record<string, boolean>>({});
+const AlgorithmPreferencesSection: React.FC<
+  AlgorithmPreferencesSectionProps
+> = ({ form }) => {
+  const [expandedDetails, setExpandedDetails] = useState<
+    Record<string, boolean>
+  >({});
   const [activeTab, setActiveTab] = useState<"image" | "sound">("image");
 
   const toggleDetails = (algorithmId: string) => {
@@ -33,10 +44,13 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
       {/* Header Section */}
       <div className="mb-6">
         <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1">
-          Select Your Preferred Algorithms <span className="text-red-500">*</span>
+          Select Your Preferred Algorithms{" "}
+          <span className="text-red-500">*</span>
         </h3>
         <p className="text-sm text-gray-600">
-          Choose at least one algorithm. You can select multiple options.
+          Choose at least one algorithm. You can select multiple options.This
+          select algo with be modified as per your preference and will be
+          installed inside the hardware kit through OS ( SD card )
         </p>
       </div>
 
@@ -95,15 +109,26 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
                           ? "text-blue-600 border-blue-300"
                           : "text-gray-600 border-gray-300"
                       }`}
-                      checked={form.watch("selectedAlgorithms")?.includes(algorithm.id) || false}
+                      checked={
+                        form
+                          .watch("selectedAlgorithms")
+                          ?.includes(algorithm.id) || false
+                      }
                       onChange={(e) => {
-                        const currentValues = form.watch("selectedAlgorithms") || [];
+                        const currentValues =
+                          form.watch("selectedAlgorithms") || [];
                         if (e.target.checked) {
-                          form.setValue("selectedAlgorithms", [...currentValues, algorithm.id], { shouldValidate: true });
+                          form.setValue(
+                            "selectedAlgorithms",
+                            [...currentValues, algorithm.id],
+                            { shouldValidate: true }
+                          );
                         } else {
                           form.setValue(
                             "selectedAlgorithms",
-                            currentValues.filter((value: string) => value !== algorithm.id),
+                            currentValues.filter(
+                              (value: string) => value !== algorithm.id
+                            ),
                             { shouldValidate: true }
                           );
                         }
@@ -174,15 +199,26 @@ const AlgorithmPreferencesSection: React.FC<AlgorithmPreferencesSectionProps> = 
                           ? "text-blue-600 border-blue-300"
                           : "text-gray-600 border-gray-300"
                       }`}
-                      checked={form.watch("selectedAlgorithms")?.includes(algorithm.id) || false}
+                      checked={
+                        form
+                          .watch("selectedAlgorithms")
+                          ?.includes(algorithm.id) || false
+                      }
                       onChange={(e) => {
-                        const currentValues = form.watch("selectedAlgorithms") || [];
+                        const currentValues =
+                          form.watch("selectedAlgorithms") || [];
                         if (e.target.checked) {
-                          form.setValue("selectedAlgorithms", [...currentValues, algorithm.id], { shouldValidate: true });
+                          form.setValue(
+                            "selectedAlgorithms",
+                            [...currentValues, algorithm.id],
+                            { shouldValidate: true }
+                          );
                         } else {
                           form.setValue(
                             "selectedAlgorithms",
-                            currentValues.filter((value: string) => value !== algorithm.id),
+                            currentValues.filter(
+                              (value: string) => value !== algorithm.id
+                            ),
                             { shouldValidate: true }
                           );
                         }
